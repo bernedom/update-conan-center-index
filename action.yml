@@ -2,14 +2,20 @@
 name: "Update conan center index"
 description: "Create a version bump update for the conan center index for a specific recipe"
 inputs:
-  version: # id of input
+  version: 
     description: "the version to push"
     required: true
   fork_of_index:
-    description: "The repository containing the fork"
+    description: "The repository containing the fork as username/repository (i.e. bernedom/conan-center-index)"
     required: true
   recipe:
     description: "The recipe to update"
+    required: true
+  user:
+    description: "The user name to use to push the changes"
+    required: true
+  access_token:
+    description: "The access token to use to push the changes"
     required: true
   zipball_url:
     description: "The URL for the release zip ball to download"
@@ -27,5 +33,9 @@ runs:
     - ${{ inputs.recipe }}
     - "--zipball"
     - ${{ inputs.zipball_url }}
+    - "--user"
+    - ${{ inputs.user }}
+    - "--access-token"
+    - ${{ inputs.access_token }}
 # todo update with upstream
-# todo allow passing the fork as /bernedom/conan-center-index
+
